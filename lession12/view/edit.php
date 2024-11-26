@@ -4,31 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blog Manager - Chỉnh sửa</title>
 </head>
 
 <body>
-    <h1>product manager</h1>
+    <h1>Chỉnh sửa Blog</h1>
     <form method="POST" action="?act=save">
-        <label for="id">id</label><br>
-        <input type="text" id="id" name="id" readonly value="<?php echo $product["id"] ?>"><br><br>
+        <label for="id">ID:</label><br>
+        <input type="text" id="id" name="id" readonly value="<?php echo htmlspecialchars($blog['id']); ?>"><br><br>
 
-        <label for="product_name">Tên sản phẩm:</label><br>
-        <input type="text" id="product_name" name="product_name" required value="<?php echo $product["product_name"] ?>"><br><br>
+        <label for="title">Tiêu đề:</label><br>
+        <input type="text" id="title" name="title" required value="<?php echo htmlspecialchars($blog['title']); ?>"><br><br>
 
-        <label for="price">Giá:</label><br>
-        <input type="number" id="price" name="price" required value="<?php echo $product["price"] ?>"><br><br>
+        <label for="teaser">Tóm tắt:</label><br>
+        <input type="text" id="teaser" name="teaser" required value="<?php echo htmlspecialchars($blog['teaser']); ?>"><br><br>
 
-        <label for="description">Mô tả:</label><br>
-        <input id="description" name="description" required value="<?php echo $product["product_description"] ?>"></textarea><br><br>
+        <label for="content">Nội dung:</label><br>
+        <textarea id="content" name="content" rows="4" required><?php echo htmlspecialchars($blog['content']); ?></textarea><br><br>
 
-        <label for="manufacturer">Nhà sản xuất:</label><br>
-        <input type="text" id="manufacturer" name="manufacturer" required value="<?php echo $product["manufacturer"] ?>"><br><br>
-
-        <button type="submit">Luwu</button>
+        <button type="submit">Lưu</button>
     </form>
-
-
 </body>
 
 </html>

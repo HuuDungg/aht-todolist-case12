@@ -4,59 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blog Manager</title>
 </head>
 
 <body>
-    <h1>product manager</h1>
+    <h1>Blog Manager</h1>
     <form method="POST" action="?act=add">
-        <label for="product_name">Tên sản phẩm:</label><br>
-        <input type="text" id="product_name" name="product_name" required><br><br>
+        <label for="title">Tiêu đề:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
 
-        <label for="price">Giá:</label><br>
-        <input type="number" id="price" name="price" required><br><br>
+        <label for="teaser">Tóm tắt:</label><br>
+        <input type="text" id="teaser" name="teaser" required><br><br>
 
-        <label for="description">Mô tả:</label><br>
-        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+        <label for="content">Nội dung:</label><br>
+        <textarea id="content" name="content" rows="4" required></textarea><br><br>
 
-        <label for="manufacturer">Nhà sản xuất:</label><br>
-        <input type="text" id="manufacturer" name="manufacturer" required><br><br>
-
-        <button type="submit">Gửi</button>
+        <button type="submit">Thêm blog</button>
     </form>
 
     <form action="?act=search" method="POST">
-        Keyword <input type="text" name="search"> <button>Search</button>
+        Tìm kiếm: <input type="text" name="search" placeholder="Nhập tiêu đề...">
+        <button type="submit">Tìm kiếm</button>
     </form>
 
     <table border="1">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>manufacturer</th>
+                <th>Tiêu đề</th>
+                <th>Tóm tắt</th>
+                <th>Nội dung</th>
+                <th>Ngày tạo</th>
+                <th>Hành động</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            if (!empty($products)) {
-                foreach ($products as $product) {
+            if (!empty($blogs)) {
+                foreach ($blogs as $blog) {
                     echo "<tr>";
-                    echo "<td>" . htmlspecialchars($product['id']) . "</td>";
-                    echo "<td>" . htmlspecialchars($product['product_name']) . "</td>";
-                    echo "<td>" . htmlspecialchars($product['price']) . "</td>";
-                    echo "<td>" . htmlspecialchars($product['product_description']) . "</td>";
-                    echo "<td>" . htmlspecialchars($product['manufacturer']) . "</td>";
+                    echo "<td>" . htmlspecialchars($blog['id']) . "</td>";
+                    echo "<td>" . htmlspecialchars($blog['title']) . "</td>";
+                    echo "<td>" . htmlspecialchars($blog['teaser']) . "</td>";
+                    echo "<td>" . htmlspecialchars($blog['content']) . "</td>";
+                    echo "<td>" . htmlspecialchars($blog['created_at']) . "</td>";
                     echo "<td>";
-                    echo "<a href='?act=edit&id=" . $product['id'] . "'>Edit</a> | ";
-                    echo "<a href='?act=delete&id=" . $product['id'] . "'>Delete</a>";
+                    echo "<a href='?act=edit&id=" . $blog['id'] . "'>Sửa</a> | ";
+                    echo "<a href='?act=delete&id=" . $blog['id'] . "'>Xóa</a>";
                     echo "</td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No product found</td></tr>";
+                echo "<tr><td colspan='6'>Không tìm thấy blog nào</td></tr>";
             }
             ?>
         </tbody>
